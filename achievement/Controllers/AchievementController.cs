@@ -50,7 +50,7 @@ namespace achievement.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Create([Bind(Include="ID,Name,Acheivement,Created,Createdby")] Achievement achievement)
+        public async Task<ActionResult> Create([Bind(Include="ID,Name,Acheivement,Created,Createdby,URL")] Achievement achievement)
         {
             if (ModelState.IsValid)
             {
@@ -83,16 +83,33 @@ namespace achievement.Controllers
         // POST: /Achievement/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost,ActionName("Edit")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Edit([Bind(Include="ID,Name,Acheivement,Created,Createdby")] Achievement achievement)
+        public async Task<ActionResult> EditPost(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(achievement).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Achievement achievement = await db.Achievements.FindAsync(id);
+
+
+            if (TryUpdateModel(achievement, "",
+       new string[] { "Name", "URL", "Acheivement" }))
+            {
+                try
+                {
+                    db.Entry(achievement).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (DataException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
             }
             return View(achievement);
         }
