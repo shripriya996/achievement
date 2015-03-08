@@ -19,7 +19,13 @@ namespace achievement.Controllers
         // GET: /Achievement/
         public async Task<ActionResult> Index()
         {
-            return View(await db.Achievements.ToListAsync());
+            var achievements = from s in db.Achievements
+                               select s;
+            
+           achievements= achievements.OrderByDescending(s => s.Created)
+                .Take(100);
+          
+            return View(await achievements.ToListAsync());
         }
         
         // GET: /Achievement/Details/5
