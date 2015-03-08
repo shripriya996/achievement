@@ -188,6 +188,10 @@
     <Compile Include="Migrations\201503080607296_addedyoutubeurl.Designer.cs">
       <DependentUpon>201503080607296_addedyoutubeurl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503080652400_misc.cs" />
+    <Compile Include="Migrations\201503080652400_misc.Designer.cs">
+      <DependentUpon>201503080652400_misc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Achievement.cs" />
@@ -274,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503080607296_addedyoutubeurl.resx">
       <DependentUpon>201503080607296_addedyoutubeurl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503080652400_misc.resx">
+      <DependentUpon>201503080652400_misc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

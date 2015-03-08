@@ -14,9 +14,9 @@ namespace achievement.Models
         [Display(Name = "Achiever's Name")]
         [RegularExpression("^([a-zA-Z0-9 .&'-]+)$", ErrorMessage = "Invalid Name")]
         public String Name { get; set; }
-        [Url]
+        
         [Display(Name = "Youtube URL")]
-        [RegularExpression("^(https://www.youtube.com/)", ErrorMessage = "Youtube Url only")]
+        [RegularExpression("^(https://www.youtube.com/.*)", ErrorMessage = "Youtube Url only")]
         public String URL { get; set; }
         [Required]
         [StringLength(10000)]

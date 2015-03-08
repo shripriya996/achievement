@@ -25,14 +25,17 @@
         <dd>
             @Html.DisplayFor(model => model.Acheivement)
         </dd>
+        @if(@Model.URL!=null){
         <dt>
             @Html.DisplayNameFor(model => model.URL)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.URL)
+            <iframe width="560" height="315" src="@Model.URL.ToString()" frameborder="0" allowfullscreen></iframe>
+        
+           
         </dd>
-
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.Created)
