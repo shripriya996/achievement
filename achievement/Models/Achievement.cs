@@ -11,11 +11,12 @@ namespace achievement.Models
         public int ID { get; set; }
         [Required]
         [StringLength(100)]
+        [Display(Name = "Achiever's Name")]
         [RegularExpression("^([a-zA-Z0-9 .&'-]+)$", ErrorMessage = "Invalid Name")]
         public String Name { get; set; }
         [Url]
-        [Display(Description = "Youtube URL")]
-        [RegularExpression("^(https://www.youtube.com/)", ErrorMessage = "Only Youtube Url")]
+        [Display(Name = "Youtube URL")]
+        [RegularExpression("^(https://www.youtube.com/)", ErrorMessage = "Youtube Url only")]
         public String URL { get; set; }
         [Required]
         [StringLength(10000)]
