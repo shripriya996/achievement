@@ -74,16 +74,24 @@ namespace achievement.Controllers
          [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Achievement achievement = await db.Achievements.FindAsync(id);
-            if (achievement == null)
+            if (User.Identity.Name == achievement.Createdby)
             {
-                return HttpNotFound();
+                if (achievement == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(achievement);
             }
-            return View(achievement);
+            else
+            {
+                return new HttpUnauthorizedResult();
+            }
         }
 
         // POST: /Achievement/Edit/5
@@ -100,21 +108,23 @@ namespace achievement.Controllers
             }
             Achievement achievement = await db.Achievements.FindAsync(id);
 
-
-            if (TryUpdateModel(achievement, "",
-       new string[] { "Name", "URL", "Acheivement" }))
+            if (User.Identity.Name == achievement.Createdby)
             {
-                try
+                if (TryUpdateModel(achievement, "",
+           new string[] { "Name", "URL", "Acheivement" }))
                 {
-                    db.Entry(achievement).State = EntityState.Modified;
-                    db.SaveChanges();
+                    try
+                    {
+                        db.Entry(achievement).State = EntityState.Modified;
+                        db.SaveChanges();
 
-                    return RedirectToAction("Index");
-                }
-                catch (DataException /* dex */)
-                {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                        return RedirectToAction("Index");
+                    }
+                    catch (DataException /* dex */)
+                    {
+                        //Log the error (uncomment dex variable name and add a line here to write a log.
+                        ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                    }
                 }
             }
             return View(achievement);
@@ -129,11 +139,17 @@ namespace achievement.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Achievement achievement = await db.Achievements.FindAsync(id);
+
             if (achievement == null)
             {
                 return HttpNotFound();
             }
-            return View(achievement);
+            if (User.Identity.Name == achievement.Createdby)
+            {
+                return View(achievement);
+            }
+            else
+            { return new HttpUnauthorizedResult(); }
         }
 
         // POST: /Achievement/Delete/5
@@ -142,9 +158,14 @@ namespace achievement.Controllers
         [Authorize]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Achievement achievement = await db.Achievements.FindAsync(id);
-            db.Achievements.Remove(achievement);
-            await db.SaveChangesAsync();
+           
+                Achievement achievement = await db.Achievements.FindAsync(id);
+                if (User.Identity.Name == achievement.Createdby)
+                {
+                db.Achievements.Remove(achievement);
+                await db.SaveChangesAsync();
+                }
+
             return RedirectToAction("Index");
         }
 

@@ -56,8 +56,16 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")|
-    @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
+@if(User.Identity.Name==Model.Createdby){
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) Html.Display("|");
+}
+    @Html.ActionLink("Back to List", "Index")
+
+    @if(User.Identity.Name==Model.Createdby){
+
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) 
+        Html.Display("|");
+    }
+    
 
 </p>
