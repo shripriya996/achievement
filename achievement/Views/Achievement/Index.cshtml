@@ -24,15 +24,15 @@
                     if (k % 3 == 0)
                     {
                         <div class="panel panel-default">
-                <div class="panel-heading"><span class="pull-right">@Html.ActionLink("Details", "Details", new { id = item.ID })</span> <h4>@Html.DisplayFor(modelItem => item.Name)</h4></div>
-                <div class="panel-body">
-                    <img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Keyword: Bootstrap</a>
-                    <div class="clearfix"></div>
-                    <hr>
-
-                    <p>@Html.DisplayFor(modelItem => item.Acheivement)</p>
-                </div>
-            </div>
+                        <div class="panel-heading"><span class="pull-right"> @Html.ActionLink("Details", "Details", new { id = item.ID })</span> <h4>@Html.DisplayFor(modelItem => item.Name)</h4></div>
+                        <div class="panel-body">
+                            @if(item.URL!=null){                            
+                                <iframe width="100%" height="315" src="@item.URL.ToString()" frameborder="0" allowfullscreen></iframe>
+                                <hr>
+                            }
+                            <p>@Html.DisplayFor(modelItem => item.Acheivement)</p>
+                        </div>
+                    </div>
                     } k++;
                 }
             </div>
@@ -43,14 +43,13 @@
                 if (k % 3 == 0)
                 {
                     <div class="panel panel-default">
-                        <div class="panel-heading"><span class="pull-right">@Html.ActionLink("Details", "Details", new { id = item.ID })</span> <h4>@Html.DisplayFor(modelItem => item.Name)</h4></div>
+                        <div class="panel-heading"><span class="pull-right"> @Html.ActionLink("Details", "Details", new { id = item.ID })</span> <h4>@Html.DisplayFor(modelItem => item.Name)</h4></div>
                         <div class="panel-body">
-                            <img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Keyword: Bootstrap</a>
-                            <div class="clearfix"></div>
-                            <hr>
-
+                            @if(item.URL!=null){                            
+                                <iframe width="100%" height="315" src="@item.URL.ToString()" frameborder="0" allowfullscreen></iframe>
+                                <hr>
+                            }
                             <p>@Html.DisplayFor(modelItem => item.Acheivement)</p>
-
                         </div>
                     </div>
                 } k++;
@@ -65,10 +64,10 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><span class="pull-right"> @Html.ActionLink("Details", "Details", new { id = item.ID })</span> <h4>@Html.DisplayFor(modelItem => item.Name)</h4></div>
                         <div class="panel-body">
-                            <img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Keyword: Bootstrap</a>
-                            <div class="clearfix"></div>
-                            <hr>
-
+                            @if(item.URL!=null){                            
+                                <iframe width="100%" height="315" src="@item.URL.ToString()" frameborder="0" allowfullscreen></iframe>
+                                <hr>
+                            }
                             <p>@Html.DisplayFor(modelItem => item.Acheivement)</p>
                         </div>
                     </div>
