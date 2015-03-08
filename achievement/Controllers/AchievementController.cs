@@ -21,7 +21,7 @@ namespace achievement.Controllers
         {
             return View(await db.Achievements.ToListAsync());
         }
-
+        
         // GET: /Achievement/Details/5
         public async Task<ActionResult> Details(int? id)
         {
