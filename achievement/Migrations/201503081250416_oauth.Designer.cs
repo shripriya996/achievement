@@ -7,13 +7,13 @@ namespace achievement.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class oauth : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(oauth));
         
         string IMigrationMetadata.Id
         {
-            get { return "201503071558437_InitialCreate"; }
+            get { return "201503081250416_oauth"; }
         }
         
         string IMigrationMetadata.Source

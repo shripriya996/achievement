@@ -5,15 +5,15 @@ namespace achievement.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<achievement.DAL.AchievementContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<achievement.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "achievement.DAL.AchievementContext";
+            ContextKey = "achievement.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(achievement.DAL.AchievementContext context)
+        protected override void Seed(achievement.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

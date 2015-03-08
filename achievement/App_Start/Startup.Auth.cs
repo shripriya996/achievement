@@ -28,11 +28,13 @@ namespace achievement
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "621925141273825",
+              appSecret: "cacf99002ad970c6f688c3f29576c584");
 
-            //app.UseGoogleAuthentication();
+            app.UseGoogleAuthentication(
+         clientId: "452753979554-vsajhvpdlr1egdi8vnrtfcnnevadmt8b.apps.googleusercontent.com",
+         clientSecret: "3LuGaPCsIJ43_GsIBJg_0fx2");
         }
     }
 }
